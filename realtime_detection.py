@@ -1,3 +1,6 @@
+#Run this in models/research/object_detection folder
+#And copy also new_graph folder an label_map.pbtxt into object_detection folder
+
 import os
 import tensorflow as tf
 config = tf.compat.v1.ConfigProto(gpu_options =
@@ -8,14 +11,12 @@ config.gpu_options.allow_growth = True
 session = tf.compat.v1.Session(config=config)
 tf.compat.v1.keras.backend.set_session(session)
 
-from object_detection.utils import label_map_util
 from utils import config_util
-from object_detection.utils import visualization_utils as viz_utils
 from builders import model_builder
 
 CONFIG_PATH = 'new_graph/pipeline.config'
 CHECKPOINT_PATH = 'new_graph/checkpoint/ckpt-0'
-ANNOTATION_PATH = 'data/wine_bottle_map.pbtxt'
+ANNOTATION_PATH = 'label_map.pbtxt'
 
 # Load pipeline config and build a detection model
 configs = config_util.get_configs_from_pipeline_file(CONFIG_PATH)
